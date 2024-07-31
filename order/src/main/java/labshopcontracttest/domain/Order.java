@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import labshopcontracttest.OrderApplication;
+import labshopcontracttest.external.GetInventoryQuery;
 import lombok.Data;
 
 @Entity
@@ -38,6 +39,14 @@ public class Order {
     //<<< Clean Arch / Port Method
     public void order(OrderCommand orderCommand) {
         //implement business logic here:
+
+        // labshopcontracttest.external.Inventory inventory = new labshopcontracttest.external.Inventory();
+        labshopcontracttest.external.GetInventoryQuery getInventoryQuery = new labshopcontracttest.external.GetInventoryQuery();
+        // mappings goes here
+        // getInventoryQuery.setId(Integer.valueOf(getProductId()));
+        OrderApplication.applicationContext
+            .getBean(labshopcontracttest.external.InventoryService.class)
+            .testInventory(id, getInventoryQuery);
 
         OrderPlaced orderPlaced = new OrderPlaced(this);
         orderPlaced.publishAfterCommit();

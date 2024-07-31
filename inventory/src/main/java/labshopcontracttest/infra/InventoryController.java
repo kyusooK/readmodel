@@ -19,5 +19,12 @@ public class InventoryController {
 
     @Autowired
     InventoryRepository inventoryRepository;
+
+    @GetMapping(path = "/inventories/search/testInventory")
+    public Inventory testInventory(@PathVariable("id") Integer id, GetInventoryQuery getInventoryQuery) {
+        return inventoryRepository.testInventory(id, getInventoryQuery.getStock());
+    }
+
+    
 }
 //>>> Clean Arch / Inbound Adaptor
