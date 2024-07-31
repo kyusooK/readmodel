@@ -20,5 +20,5 @@ public interface InventoryRepository
         "from Inventory inventory " +
         "where(:id is null or inventory.id = :id) and (:stock is null or inventory.stock = :stock)"
     )
-    Inventory findByGetInventory(Integer id, Integer stock);
+    Inventory testInventory(Integer id, Integer stock);
 }
